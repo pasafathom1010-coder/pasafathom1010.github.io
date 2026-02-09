@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ติดต่อเรา - ระบบแจ้งซ่อมออนไลน์ CMRU</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            font-family: 'Sarabun', sans-serif;
+        }
+
+        :root {
+            --primary-color: #8B4789;
+            --secondary-color: #D4AF37;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+            --light-bg: #f8f9fa;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding-top: 76px;
+            padding-bottom: 0;
+        }
+
+        /* Navigation Bar Styles */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #6a3568 100%);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.2);
+            padding: 12px 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: white !important;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            transform: scale(1.05);
+        }
+
+        .navbar-brand i {
+            color: var(--secondary-color);
+            margin-right: 10px;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+            padding: 8px 16px !important;
+            margin: 0 5px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white !important;
+        }
+
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.15);
+            color: white !important;
+        }
+
+        /* Header Section */
+        .header-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #6a3568 100%);
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .header-section h1 {
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Contact Cards */
+        .contact-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease-out;
+            animation-fill-mode: both;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .contact-card:nth-child(1) { animation-delay: 0.1s; }
+        .contact-card:nth-child(2) { animation-delay: 0.2s; }
+        .contact-card:nth-child(3) { animation-delay: 0.3s; }
+        .contact-card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+        }
+
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #6a3568 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(139, 71, 137, 0.3);
+        }
+
+        .contact-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .contact-info-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: start;
+        }
+
+        .contact-info-item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-info-item i {
+            color: var(--primary-color);
+            width: 25px;
+            margin-right: 15px;
+            margin-top: 3px;
+            font-size: 1.1rem;
+        }
+
+        .contact-info-item a {
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-info-item a:hover {
+            color: var(--primary-color);
+            padding-left: 5px;
+        }
+
+        /* Contact Form */
+        .contact-form-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            animation: fadeInUp 0.6s ease-out;
+            animation-delay: 0.2s;
+            animation-fill-mode: both;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .form-control, .form-select {
+            border-radius: 10px;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(139, 71, 137, 0.15);
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #6a3568 100%);
+            border: none;
+            border-radius: 25px;
+            padding: 12px 40px;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(139, 71, 137, 0.3);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(139, 71, 137, 0.4);
+        }
+
+        /* Map Section */
+        .map-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            animation: fadeInUp 0.6s ease-out;
+            animation-delay: 0.3s;
+            animation-fill-mode: both;
+        }
+
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            height: 400px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Department Section */
+        .department-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .department-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .department-name {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .department-info {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .department-info i {
+            color: var(--primary-color);
+            width: 20px;
+            margin-right: 8px;
+        }
+
+        /* Social Media Section */
+        .social-media-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            animation: fadeInUp 0.6s ease-out;
+            animation-delay: 0.4s;
+            animation-fill-mode: both;
+        }
+
+        .social-links-large {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .social-link-item {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .social-link-item:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .social-facebook { background: linear-gradient(135deg, #3b5998 0%, #2d4373 100%); }
+        .social-youtube { background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%); }
+        .social-line { background: linear-gradient(135deg, #00c300 0%, #00a000 100%); }
+        .social-email { background: linear-gradient(135deg, #ea4335 0%, #c5221f 100%); }
+        .social-phone { background: linear-gradient(135deg, var(--primary-color) 0%, #6a3568 100%); }
+
+        .social-label {
+            display: block;
+            margin-top: 10px;
+            font-weight: 600;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        /* Quick Info Boxes */
+        .quick-info-box {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .quick-info-box:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+        }
+
+        .info-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .info-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .info-text {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer-section {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 30px;
+            padding-top: 20px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            .contact-form-section, .map-section {
+                padding: 25px;
+            }
+
+            .social-links-large {
+                gap: 15px;
+            }
+
+            .social-link-item {
+                width: 70px;
+                height: 70px;
+                font-size: 1.5rem;
+            }
+
+            .header-section h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index home.html">
+                <i class="fas fa-tools"></i>
+                ระบบแจ้งซ่อม CMRU
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.3);">
+                <span class="navbar-toggler-icon" style="filter: brightness(0) invert(1);"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index home.html"><i class="fas fa-home me-1"></i>หน้าแรก</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="All repair items.html"><i class="fas fa-list me-1"></i>รายการซ่อม</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="How to use.html"><i class="fas fa-question-circle me-1"></i>วิธีใช้งาน</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="Contact us.html"><i class="fas fa-phone me-1"></i>ติดต่อเรา</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="header-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-9">
+                    <h1><i class="fas fa-phone-alt me-3"></i>ติดต่อเรา</h1>
+                    <p class="mb-0">มหาวิทยาลัยราชภัฏเชียงใหม่ | Chiang Mai Rajabhat University</p>
+                </div>
+                <div class="col-md-3 text-end">
+                    <img src="https://www.cmru.ac.th/wp-content/uploads/2021/08/logo-cmru-white.png" alt="CMRU Logo" style="height: 80px;" onerror="this.style.display='none'">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mb-5">
+        <!-- Quick Info Boxes -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="quick-info-box text-center">
+                    <div class="info-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="info-title">เวลาทำการ</div>
+                    <div class="info-text">
+                        จันทร์ - ศุกร์<br>
+                        08:30 - 16:30 น.<br>
+                        <small class="text-muted">(ปิดวันหยุดนักขัตฤกษ์)</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="quick-info-box text-center">
+                    <div class="info-icon">
+                        <i class="fas fa-phone-volume"></i>
+                    </div>
+                    <div class="info-title">โทรศัพท์</div>
+                    <div class="info-text">
+                        053-885-555<br>
+                        <small class="text-muted">สายด่วนแจ้งซ่อม</small><br>
+                        ต่อ 1234
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="quick-info-box text-center">
+                    <div class="info-icon">
+                        <i class="fas fa-envelope-open-text"></i>
+                    </div>
+                    <div class="info-title">อีเมล</div>
+                    <div class="info-text">
+                        repair@cmru.ac.th<br>
+                        <small class="text-muted">ตอบกลับภายใน 24 ชั่วโมง</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Contact Info -->
+        <div class="row mb-5">
+            <div class="col-lg-6">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="contact-title">ที่อยู่มหาวิทยาลัย</h3>
+                    <div class="contact-info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>มหาวิทยาลัยราชภัฏเชียงใหม่</strong><br>
+                            202 ถนนช้างเผือก ตำบลช้างเผือก<br>
+                            อำเภอเมือง จังหวัดเชียงใหม่ 50300
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>โทรศัพท์:</strong> 053-885-555<br>
+                            <strong>โทรสาร:</strong> 053-885-556
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="fas fa-globe"></i>
+                        <div>
+                            <a href="https://www.cmru.ac.th" target="_blank">www.cmru.ac.th</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="contact-title">งานซ่อมบำรุง</h3>
+                    <div class="contact-info-item">
+                        <i class="fas fa-user-tie"></i>
+                        <div>
+                            <strong>หัวหน้างานซ่อมบำรุง</strong><br>
+                            นายสมชาย ใจดี
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <strong>โทรศัพท์:</strong> 053-885-555 ต่อ 1234<br>
+                            <strong>มือถือ:</strong> 089-123-4567
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <a href="mailto:repair@cmru.ac.th">repair@cmru.ac.th</a>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>เวลาทำการ:</strong><br>
+                            จันทร์ - ศุกร์: 08:30 - 16:30 น.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Department Contacts -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <div class="contact-form-section">
+                    <h2 class="section-title">หน่วยงานที่เกี่ยวข้อง</h2>
+                    <p class="section-subtitle">ติดต่อหน่วยงานเฉพาะด้านสำหรับการซ่อมแซม</p>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="department-card">
+                                <div class="department-name">
+                                    <i class="fas fa-bolt me-2"></i>ฝ่ายไฟฟ้า
+                                </div>
+                                <div class="department-info">
+                                    <div><i class="fas fa-user"></i>นายวิทยา มีไฟ</div>
+                                    <div><i class="fas fa-phone"></i>053-885-555 ต่อ 1235</div>
+                                    <div><i class="fas fa-mobile-alt"></i>089-234-5678</div>
+                                    <div><i class="fas fa-envelope"></i>electric@cmru.ac.th</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="department-card">
+                                <div class="department-name">
+                                    <i class="fas fa-faucet me-2"></i>ฝ่ายประปา
+                                </div>
+                                <div class="department-info">
+                                    <div><i class="fas fa-user"></i>นายสมศักดิ์ น้ำใส</div>
+                                    <div><i class="fas fa-phone"></i>053-885-555 ต่อ 1236</div>
+                                    <div><i class="fas fa-mobile-alt"></i>089-345-6789</div>
+                                    <div><i class="fas fa-envelope"></i>plumbing@cmru.ac.th</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="department-card">
+                                <div class="department-name">
+                                    <i class="fas fa-wind me-2"></i>ฝ่ายปรับอากาศ
+                                </div>
+                                <div class="department-info">
+                                    <div><i class="fas fa-user"></i>นายประสิทธิ์ เย็นสบาย</div>
+                                    <div><i class="fas fa-phone"></i>053-885-555 ต่อ 1237</div>
+                                    <div><i class="fas fa-mobile-alt"></i>089-456-7890</div>
+                                    <div><i class="fas fa-envelope"></i>aircon@cmru.ac.th</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="department-card">
+                                <div class="department-name">
+                                    <i class="fas fa-laptop me-2"></i>ฝ่าย IT
+                                </div>
+                                <div class="department-info">
+                                    <div><i class="fas fa-user"></i>นายเทคโน ดิจิทัล</div>
+                                    <div><i class="fas fa-phone"></i>053-885-555 ต่อ 1238</div>
+                                    <div><i class="fas fa-mobile-alt"></i>089-567-8901</div>
+                                    <div><i class="fas fa-envelope"></i>it@cmru.ac.th</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="department-card">
+                                <div class="department-name">
+                                    <i class="fas fa-building me-2"></i>ฝ่ายอาคารสถานที่
+                                </div>
+                                <div class="department-info">
+                                    <div><i class="fas fa-user"></i>นายมั่นคง แข็งแรง</div>
+                                    <div><i class="fas fa-phone"></i>053-885-555 ต่อ 1239</div>
+                                    <div><i class="fas fa-mobile-alt"></i>089-678-9012</div>
+                                    <div><i class="fas fa-envelope"></i>building@cmru.ac.th</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="department-card">
+                                <div class="department-name">
+                                    <i class="fas fa-chair me-2"></i>ฝ่ายเฟอร์นิเจอร์
+                                </div>
+                                <div class="department-info">
+                                    <div><i class="fas fa-user"></i>นายสวยงาม คงทน</div>
+                                    <div><i class="fas fa-phone"></i>053-885-555 ต่อ 1240</div>
+                                    <div><i class="fas fa-mobile-alt"></i>089-789-0123</div>
+                                    <div><i class="fas fa-envelope"></i>furniture@cmru.ac.th</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="row mb-5">
+            <div class="col-lg-12">
+                <div class="contact-form-section">
+                    <h2 class="section-title">ส่งข้อความถึงเรา</h2>
+                    <p class="section-subtitle">กรอกแบบฟอร์มด้านล่างเพื่อติดต่อสอบถามข้อมูล</p>
+                    
+                    <form id="contactForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="fullName" class="form-label">ชื่อ-นามสกุล *</label>
+                                <input type="text" class="form-control" id="fullName" placeholder="กรอกชื่อ-นามสกุล" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label">อีเมล *</label>
+                                <input type="email" class="form-control" id="email" placeholder="example@cmru.ac.th" required>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="phone" class="form-label">เบอร์โทรศัพท์ *</label>
+                                <input type="tel" class="form-control" id="phone" placeholder="0XX-XXX-XXXX" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="subject" class="form-label">หัวข้อ *</label>
+                                <select class="form-select" id="subject" required>
+                                    <option value="">เลือกหัวข้อ</option>
+                                    <option value="repair">สอบถามเกี่ยวกับการแจ้งซ่อม</option>
+                                    <option value="status">ตรวจสอบสถานะการซ่อม</option>
+                                    <option value="complaint">ร้องเรียน</option>
+                                    <option value="suggestion">ข้อเสนอแนะ</option>
+                                    <option value="other">อื่นๆ</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="department" class="form-label">หน่วยงาน/คณะ</label>
+                            <input type="text" class="form-control" id="department" placeholder="กรอกหน่วยงานหรือคณะ (ถ้ามี)">
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="message" class="form-label">รายละเอียด *</label>
+                            <textarea class="form-control" id="message" rows="6" placeholder="กรอกรายละเอียดที่ต้องการสอบถาม..." required></textarea>
+                        </div>
+                        
+                        <div class="text-center">
+                            <button type="submit" class="btn-submit">
+                                <i class="fas fa-paper-plane me-2"></i>ส่งข้อความ
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Social Media -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <div class="social-media-card">
+                    <h2 class="section-title text-center">ติดตามเราบนโซเชียลมีเดีย</h2>
+                    <p class="section-subtitle text-center">ติดตามข่าวสารและการอัพเดทจากเรา</p>
+                    
+                    <div class="social-links-large">
+                        <div>
+                            <a href="https://www.facebook.com/cmrufans" target="_blank" class="social-link-item social-facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <span class="social-label">Facebook</span>
+                        </div>
+                        <div>
+                            <a href="https://www.youtube.com/@SDD_CMRU" target="_blank" class="social-link-item social-youtube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <span class="social-label">YouTube</span>
+                        </div>
+                        <div>
+                            <a href="mailto:repair@cmru.ac.th" class="social-link-item social-email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <span class="social-label">Email</span>
+                        </div>
+                        <div>
+                            <a href="tel:053885555" class="social-link-item social-phone">
+                                <i class="fas fa-phone"></i>
+                            </a>
+                            <span class="social-label">โทรศัพท์</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map Section -->
+        <div class="row">
+            <div class="col-12">
+                <div class="map-section">
+                    <h2 class="section-title">แผนที่ตั้งมหาวิทยาลัย</h2>
+                    <p class="section-subtitle">มหาวิทยาลัยราชภัฏเชียงใหม่ ตำบลช้างเผือก อำเภอเมือง จังหวัดเชียงใหม่</p>
+                    
+                    <div class="map-container">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3776.542834947831!2d99.01537631490133!3d18.78891238727517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30da3a7e90bb89c3%3A0x98d742270f4dd8f6!2z4Lih4Lir4Liy4Lin4Li04LiX4Lii4Liy4Lil4Lix4Lii4Lij4Liy4LiK4Lig4Lix4LiP4LmA4LiK4Li14Lii4LiH4LmD4Lir4Lih4LmI!5e0!3m2!1sth!2sth!4v1645678901234!5m2!1sth!2sth" 
+                            allowfullscreen="" 
+                            loading="lazy">
+                        </iframe>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <h5 class="mb-3"><i class="fas fa-car me-2 text-primary"></i>การเดินทางโดยรถยนต์ส่วนตัว</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="fas fa-angle-right text-primary me-2"></i>จากตัวเมืองเชียงใหม่: ใช้ถนนช้างเผือก ประมาณ 10 นาที</li>
+                                <li class="mb-2"><i class="fas fa-angle-right text-primary me-2"></i>จากสนามบิน: ประมาณ 20 นาที</li>
+                                <li class="mb-2"><i class="fas fa-angle-right text-primary me-2"></i>มีที่จอดรถเพียงพอ</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="mb-3"><i class="fas fa-bus me-2 text-primary"></i>การเดินทางโดยรถสาธารณะ</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="fas fa-angle-right text-primary me-2"></i>รถสองแถวสายช้างเผือก</li>
+                                <li class="mb-2"><i class="fas fa-angle-right text-primary me-2"></i>รถแท็กซี่</li>
+                                <li class="mb-2"><i class="fas fa-angle-right text-primary me-2"></i>แอปพลิเคชันเรียกรถ (Grab, Bolt)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="footer-bottom">
+                <p class="mb-0">
+                    &copy; 2026 มหาวิทยาลัยราชภัฏเชียงใหม่ | Chiang Mai Rajabhat University. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Contact Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Validate form
+            if (!fullName || !email || !phone || !subject || !message) {
+                showNotification('กรุณากรอกข้อมูลให้ครบถ้วน', 'warning');
+                return;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showNotification('กรุณากรอกอีเมลให้ถูกต้อง', 'warning');
+                return;
+            }
+
+            // Phone validation
+            const phoneRegex = /^[0-9]{9,10}$/;
+            const cleanPhone = phone.replace(/[^0-9]/g, '');
+            if (!phoneRegex.test(cleanPhone)) {
+                showNotification('กรุณากรอกเบอร์โทรศัพท์ให้ถูกต้อง', 'warning');
+                return;
+            }
+
+            // Simulate sending (in real app, send to server)
+            showNotification('ส่งข้อความเรียบร้อยแล้ว เราจะติดต่อกลับโดยเร็วที่สุด', 'success');
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Notification function
+        function showNotification(message, type) {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type} alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x mt-3`;
+            alertDiv.style.zIndex = '9999';
+            alertDiv.style.minWidth = '300px';
+            alertDiv.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-triangle'} me-2"></i>
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            document.body.appendChild(alertDiv);
+            
+            setTimeout(() => {
+                alertDiv.remove();
+            }, 5000);
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.contact-card, .department-card, .quick-info-box').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
