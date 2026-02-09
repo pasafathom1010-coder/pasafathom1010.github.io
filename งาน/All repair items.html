@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รายการซ่อมทั้งหมด - มหาวิทยาลัยราชภัฏเชียงใหม่</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            font-family: 'Sarabun', sans-serif;
+        }
+
+        :root {
+            --primary-color: #8B4789;
+            --secondary-color: #D4AF37;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+            --light-bg: #f8f9fa;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding-top: 76px;
+            padding-bottom: 0;
+        }
+
+        /* Navigation Bar Styles */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #6a3568 100%);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.2);
+            padding: 12px 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: white !important;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            transform: scale(1.05);
+        }
+
+        .navbar-brand i {
+            color: var(--secondary-color);
+            margin-right: 10px;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+            padding: 8px 16px !important;
+            margin: 0 5px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white !important;
+        }
+
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.15);
+            color: white !important;
+        }
+
+        .user-dropdown .dropdown-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            padding: 8px 20px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .user-dropdown .dropdown-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .user-dropdown .dropdown-menu {
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            border: none;
+            margin-top: 10px;
+        }
+
+        .user-dropdown .dropdown-item {
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+
+        .user-dropdown .dropdown-item:hover {
+            background: var(--light-bg);
+            padding-left: 25px;
+        }
+
+        .user-dropdown .dropdown-item i {
+            width: 20px;
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+
+        .header-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #6a3568 100%);
+            color: white;
+            padding: 30px 0;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .header-section h1 {
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header-section p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        /* Stats Cards */
+        .stats-row {
+            margin-bottom: 30px;
+        }
+
+        .stats-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease-out;
+            animation-fill-mode: both;
+            height: 100%;
+        }
+
+        .stats-card:nth-child(1) { animation-delay: 0.1s; }
+        .stats-card:nth-child(2) { animation-delay: 0.2s; }
+        .stats-card:nth-child(3) { animation-delay: 0.3s; }
+        .stats-card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .stats-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .stats-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .stats-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* Filter and Search Section */
+        .filter-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            animation: fadeInUp 0.6s ease-out;
+            animation-delay: 0.5s;
+            animation-fill-mode: both;
+        }
+
+        .filter-btn {
+            border-radius: 20px;
+            margin: 5px;
+            padding: 8px 20px;
+            transition: all 0.3s ease;
+            border: 2px solid #dee2e6;
+            background: white;
+            color: #495057;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover {
+            background: var(--light-bg);
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .filter-btn i {
+            margin-right: 5px;
+        }
+
+        /* Table Styles */
+        .table-container {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            animation: fadeInUp 0.6s ease-out;
+            animation-delay: 0.6s;
+            animation-fill-mode: both;
+        }
+
+        .custom-table {
+            margin-bottom: 0;
+        }
+
+        .custom-table thead {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #6a3568 100%);
+            color: white;
+        }
+
+        .custom-table thead th {
+            border: none;
+            padding: 15px 12px;
+            font-weight: 600;
+            vertical-align: middle;
+        }
+
+        .custom-table thead th:first-child {
+            border-top-left-radius: 10px;
+        }
+
+        .custom-table thead th:last-child {
+            border-top-right-radius: 10px;
+        }
+
+        .custom-table tbody tr {
+            transition: all 0.3s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .custom-table tbody tr:hover {
+            background-color: #f8f9fa;
+            transform: scale(1.01);
+        }
+
+        .custom-table tbody td {
+            padding: 15px 12px;
+            vertical-align: middle;
+        }
+
+        .status-badge {
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .status-progress {
+            background-color: #cce5ff;
+            color: #004085;
+        }
+
+        .status-completed {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .priority-badge {
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .priority-high {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .priority-medium {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .priority-low {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .category-icon {
+            font-size: 1.5rem;
+            margin-right: 8px;
+            color: var(--primary-color);
+        }
+
+        .btn-action {
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: none;
+            margin: 2px;
+        }
+
+        .btn-action:hover {
+            transform: scale(1.1);
+        }
+
+        .btn-view {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-edit {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .btn-delete {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+        }
+
+        .add-repair-btn {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #6a3568 100%);
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 20px rgba(139, 71, 137, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 5px 20px rgba(139, 71, 137, 0.4);
+            }
+            50% {
+                box-shadow: 0 5px 30px rgba(139, 71, 137, 0.7);
+            }
+            100% {
+                box-shadow: 0 5px 20px rgba(139, 71, 137, 0.4);
+            }
+        }
+
+        .add-repair-btn:hover {
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        /* Modal Styles */
+        .modal-content {
+            border-radius: 20px;
+            border: none;
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #6a3568 100%);
+            color: white;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(139, 71, 137, 0.25);
+        }
+
+        .timeline {
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .timeline-item {
+            padding-left: 30px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+        }
+
+        /* Pagination */
+        .pagination {
+            margin-top: 20px;
+        }
+
+        .pagination .page-link {
+            color: var(--primary-color);
+            border-radius: 8px;
+            margin: 0 3px;
+            border: 1px solid #dee2e6;
+        }
+
+        .pagination .page-link:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .pagination .page-item.active .page-link {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        /* Footer Styles */
+        .main-content {
+            margin-bottom: 50px;
+        }
+
+        .footer-section {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+        }
+
+        .footer-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-title:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-links i {
+            margin-right: 8px;
+            color: var(--secondary-color);
+        }
+
+        .contact-info {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+        }
+
+        .contact-info i {
+            color: var(--secondary-color);
+            margin-right: 10px;
+            width: 20px;
+        }
+
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 30px;
+            padding-top: 20px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-logo {
+            max-height: 60px;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 40px;
+            color: #6c757d;
+        }
+
+        .no-data i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+
+        @media (max-width: 768px) {
+            .footer-section {
+                text-align: center;
+            }
+
+            .footer-title:after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .table-container {
+                overflow-x: auto;
+            }
+
+            .custom-table {
+                font-size: 0.85rem;
+            }
+
+            .stats-number {
+                font-size: 1.5rem;
+            }
+
+            .filter-btn {
+                font-size: 0.85rem;
+                padding: 6px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index home.html">
+                <i class="fas fa-tools"></i>
+                ระบบแจ้งซ่อม CMRU
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.3);">
+                <span class="navbar-toggler-icon" style="filter: brightness(0) invert(1);"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index home.html"><i class="fas fa-home me-1"></i>หน้าแรก</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="All repair items.html"><i class="fas fa-list me-1"></i>รายการซ่อม</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="How to use.html"><i class="fas fa-question-circle me-1"></i>วิธีใช้งาน</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Contact us.html"><i class="fas fa-phone me-1"></i>ติดต่อเรา</a>
+                    </li>
+                    
+                    <!-- User Dropdown -->
+                    <li class="nav-item dropdown user-dropdown" id="userDropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user-circle me-2"></i>
+                            <span id="displayUserName">ผู้ใช้งาน</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-user"></i>โปรไฟล์</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-history"></i>ประวัติการแจ้งซ่อม</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog"></i>ตั้งค่า</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i>ออกจากระบบ</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="header-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-9">
+                    <h1><i class="fas fa-list-alt me-3"></i>รายการซ่อมทั้งหมด</h1>
+                    <p class="mb-0">จัดการและติดตามสถานะการแจ้งซ่อมทั้งหมด</p>
+                </div>
+                <div class="col-md-3 text-end">
+                    <img src="https://www.cmru.ac.th/wp-content/uploads/2021/08/logo-cmru-white.png" alt="CMRU Logo" style="height: 80px;" onerror="this.style.display='none'">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container main-content">
+        <!-- Stats Cards -->
+        <div class="row stats-row">
+            <div class="col-lg-3 col-md-6 mb-3">
+                <div class="stats-card text-center">
+                    <div class="stats-icon text-primary">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <div class="stats-number" id="totalCount">9</div>
+                    <div class="text-muted">รายการทั้งหมด</div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-3">
+                <div class="stats-card text-center">
+                    <div class="stats-icon text-warning">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stats-number" id="pendingCount">3</div>
+                    <div class="text-muted">รอดำเนินการ</div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-3">
+                <div class="stats-card text-center">
+                    <div class="stats-icon text-info">
+                        <i class="fas fa-cog fa-spin"></i>
+                    </div>
+                    <div class="stats-number" id="progressCount">4</div>
+                    <div class="text-muted">กำลังดำเนินการ</div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-3">
+                <div class="stats-card text-center">
+                    <div class="stats-icon text-success">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stats-number" id="completedCount">2</div>
+                    <div class="text-muted">เสร็จสิ้น</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter and Search Section -->
+        <div class="filter-section">
+            <div class="row align-items-center mb-3">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                        <input type="text" class="form-control" id="searchInput" placeholder="ค้นหาด้วย รหัส, สถานที่, รายละเอียด, ผู้แจ้ง...">
+                    </div>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <button class="btn btn-outline-primary" onclick="exportToExcel()">
+                        <i class="fas fa-file-excel me-2"></i>ส่งออก Excel
+                    </button>
+                    <button class="btn btn-outline-secondary" onclick="printTable()">
+                        <i class="fas fa-print me-2"></i>พิมพ์
+                    </button>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex flex-wrap justify-content-start">
+                        <button class="btn filter-btn active" data-filter="all">
+                            <i class="fas fa-th"></i>ทั้งหมด
+                        </button>
+                        <button class="btn filter-btn" data-filter="pending">
+                            <i class="fas fa-clock"></i>รอดำเนินการ
+                        </button>
+                        <button class="btn filter-btn" data-filter="progress">
+                            <i class="fas fa-cog"></i>กำลังดำเนินการ
+                        </button>
+                        <button class="btn filter-btn" data-filter="completed">
+                            <i class="fas fa-check-circle"></i>เสร็จสิ้น
+                        </button>
+                        <button class="btn filter-btn" data-filter="high">
+                            <i class="fas fa-exclamation-circle"></i>สำคัญสูง
+                        </button>
+                        <button class="btn filter-btn" data-filter="medium">
+                            <i class="fas fa-exclamation-triangle"></i>สำคัญปานกลาง
+                        </button>
+                        <button class="btn filter-btn" data-filter="low">
+                            <i class="fas fa-info-circle"></i>สำคัญต่ำ
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Table Section -->
+        <div class="table-container">
+            <div class="table-responsive">
+                <table class="table custom-table" id="repairTable">
+                    <thead>
+                        <tr>
+                            <th style="width: 80px;">รหัส</th>
+                            <th style="width: 150px;">หมวดหมู่</th>
+                            <th style="width: 200px;">สถานที่</th>
+                            <th>รายละเอียด</th>
+                            <th style="width: 120px;">ผู้แจ้ง</th>
+                            <th style="width: 100px;">ความสำคัญ</th>
+                            <th style="width: 140px;">สถานะ</th>
+                            <th style="width: 120px;">วันที่แจ้ง</th>
+                            <th style="width: 150px; text-align: center;">จัดการ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="repairTableBody">
+                        <!-- Data will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <nav aria-label="Page navigation" id="paginationContainer">
+                <ul class="pagination justify-content-center" id="pagination">
+                    <!-- Pagination will be generated here -->
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <img src="https://www.cmru.ac.th/wp-content/uploads/2021/08/logo-cmru-white.png" alt="CMRU Logo" class="footer-logo" onerror="this.style.display='none'">
+                    <h5 class="footer-title">เกี่ยวกับเรา</h5>
+                    <p class="text-white-50">
+                        ระบบแจ้งซ่อมออนไลน์ มหาวิทยาลัยราชภัฏเชียงใหม่ 
+                        เพื่อความสะดวกในการแจ้งซ่อมและติดตามสถานะการซ่อมแซม
+                    </p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/cmrufans" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="www.youtube.com/@SDD_CMRU" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h5 class="footer-title">ลิงก์ด่วน</h5>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-angle-right"></i>หน้าแรก</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i>วิธีการใช้งาน</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i>คำถามที่พบบ่อย</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i>ติดต่อเจ้าหน้าที่</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i>นโยบายความเป็นส่วนตัว</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-12 mb-4">
+                    <h5 class="footer-title">ติดต่อเรา</h5>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i>
+                            202 ถ.ช้างเผือก ต.ช้างเผือก<br>
+                            <span style="margin-left: 30px;">อ.เมือง จ.เชียงใหม่ 50300</span>
+                        </p>
+                        <p><i class="fas fa-phone"></i>053-885-555</p>
+                        <p><i class="fas fa-envelope"></i>repair@cmru.ac.th</p>
+                        <p><i class="fas fa-clock"></i>จันทร์ - ศุกร์: 08:30 - 16:30 น.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="mb-0">
+                    &copy; 2026 มหาวิทยาลัยราชภัฏเชียงใหม่ | Chiang Mai Rajabhat University. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Add Repair Button -->
+    <button class="add-repair-btn" data-bs-toggle="modal" data-bs-target="#addRepairModal">
+        <i class="fas fa-plus"></i>
+    </button>
+
+    <!-- Add Repair Modal -->
+    <div class="modal fade" id="addRepairModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-file-alt me-2"></i>เพิ่มรายการซ่อม</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="repairForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">หมวดหมู่การซ่อม *</label>
+                                <select class="form-select" id="category" required>
+                                    <option value="">เลือกหมวดหมู่</option>
+                                    <option value="electrical">ระบบไฟฟ้า</option>
+                                    <option value="plumbing">ระบบประปา</option>
+                                    <option value="aircon">เครื่องปรับอากาศ</option>
+                                    <option value="furniture">เฟอร์นิเจอร์</option>
+                                    <option value="computer">คอมพิวเตอร์/IT</option>
+                                    <option value="building">อาคารสถานที่</option>
+                                    <option value="other">อื่นๆ</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">ระดับความสำคัญ *</label>
+                                <select class="form-select" id="priority" required>
+                                    <option value="low">ต่ำ</option>
+                                    <option value="medium" selected>ปานกลาง</option>
+                                    <option value="high">สูง</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">สถานที่ *</label>
+                            <input type="text" class="form-control" id="location" placeholder="เช่น อาคาร 1 ห้อง 101" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">รายละเอียด *</label>
+                            <textarea class="form-control" id="description" rows="4" placeholder="อธิบายปัญหาที่ต้องการซ่อม..." required></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">ผู้แจ้ง *</label>
+                                <input type="text" class="form-control" id="reporter" placeholder="ชื่อผู้แจ้ง" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">เบอร์ติดต่อ *</label>
+                                <input type="tel" class="form-control" id="phone" placeholder="0XX-XXX-XXXX" required>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                    <button type="button" class="btn btn-primary" onclick="saveRepair()">บันทึก</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Detail Modal -->
+    <div class="modal fade" id="viewDetailModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-info-circle me-2"></i>รายละเอียดการซ่อม</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="detailContent">
+                    <!-- Detail will be loaded here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        let repairs = [
+            {
+                id: 1,
+                category: 'electrical',
+                categoryName: 'ระบบไฟฟ้า',
+                icon: 'fa-bolt',
+                location: 'อาคาร 1 ห้อง 101',
+                description: 'หลอดไฟในห้องเรียนชำรุด ไม่สว่าง',
+                status: 'pending',
+                statusName: 'รอดำเนินการ',
+                priority: 'high',
+                reporter: 'อาจารย์สมชาย ใจดี',
+                phone: '053-885-555',
+                date: '2026-02-01',
+                updatedDate: '2026-02-01'
+            },
+            {
+                id: 2,
+                category: 'plumbing',
+                categoryName: 'ระบบประปา',
+                icon: 'fa-faucet',
+                location: 'อาคาร 2 ห้องน้ำชั้น 3',
+                description: 'ท่อน้ำรั่ว น้ำไหลไม่หยุด',
+                status: 'progress',
+                statusName: 'กำลังดำเนินการ',
+                priority: 'high',
+                reporter: 'นางสาววิไล สวยงาม',
+                phone: '053-885-556',
+                date: '2026-01-30',
+                updatedDate: '2026-02-02'
+            },
+            {
+                id: 3,
+                category: 'aircon',
+                categoryName: 'เครื่องปรับอากาศ',
+                icon: 'fa-wind',
+                location: 'อาคาร 3 ห้อง 301',
+                description: 'แอร์ไม่เย็น มีเสียงดังผิดปกติ',
+                status: 'progress',
+                statusName: 'กำลังดำเนินการ',
+                priority: 'medium',
+                reporter: 'นายประสิทธิ์ ขยัน',
+                phone: '053-885-557',
+                date: '2026-01-29',
+                updatedDate: '2026-02-01'
+            },
+            {
+                id: 4,
+                category: 'furniture',
+                categoryName: 'เฟอร์นิเจอร์',
+                icon: 'fa-chair',
+                location: 'อาคาร 4 ห้อง 205',
+                description: 'เก้ออี้หัก ขาโต๊ะหลวม',
+                status: 'completed',
+                statusName: 'เสร็จสิ้น',
+                priority: 'low',
+                reporter: 'นางสาวสุดา ดีมาก',
+                phone: '053-885-558',
+                date: '2026-01-28',
+                updatedDate: '2026-02-03'
+            },
+            {
+                id: 5,
+                category: 'computer',
+                categoryName: 'คอมพิวเตอร์/IT',
+                icon: 'fa-laptop',
+                location: 'อาคาร 5 ห้องคอมพิวเตอร์',
+                description: 'คอมพิวเตอร์เปิดไม่ติด เครื่องที่ 15',
+                status: 'progress',
+                statusName: 'กำลังดำเนินการ',
+                priority: 'medium',
+                reporter: 'อาจารย์วิทยา ฉลาด',
+                phone: '053-885-559',
+                date: '2026-02-01',
+                updatedDate: '2026-02-02'
+            },
+            {
+                id: 6,
+                category: 'building',
+                categoryName: 'อาคารสถานที่',
+                icon: 'fa-building',
+                location: 'อาคาร 6 ทางเดินชั้น 2',
+                description: 'กระเบื้องแตก อาจเป็นอันตราย',
+                status: 'pending',
+                statusName: 'รอดำเนินการ',
+                priority: 'high',
+                reporter: 'นายสมศักดิ์ ระวัง',
+                phone: '053-885-560',
+                date: '2026-02-02',
+                updatedDate: '2026-02-02'
+            },
+            {
+                id: 7,
+                category: 'electrical',
+                categoryName: 'ระบบไฟฟ้า',
+                icon: 'fa-bolt',
+                location: 'อาคาร 7 ลานจอดรถ',
+                description: 'ไฟส่องสว่างไม่ทำงาน',
+                status: 'progress',
+                statusName: 'กำลังดำเนินการ',
+                priority: 'medium',
+                reporter: 'นายรักษา ปลอดภัย',
+                phone: '053-885-561',
+                date: '2026-01-31',
+                updatedDate: '2026-02-01'
+            },
+            {
+                id: 8,
+                category: 'plumbing',
+                categoryName: 'ระบบประปา',
+                icon: 'fa-faucet',
+                location: 'อาคาร 8 โรงอาหาร',
+                description: 'ท่อระบายน้ำอุดตัน',
+                status: 'completed',
+                statusName: 'เสร็จสิ้น',
+                priority: 'medium',
+                reporter: 'นางสาวอร่อย ทำกิน',
+                phone: '053-885-562',
+                date: '2026-01-27',
+                updatedDate: '2026-02-03'
+            },
+            {
+                id: 9,
+                category: 'other',
+                categoryName: 'อื่นๆ',
+                icon: 'fa-wrench',
+                location: 'อาคาร 9 ห้องประชุม',
+                description: 'ประตูห้องประชุมปิดไม่สนิท',
+                status: 'pending',
+                statusName: 'รอดำเนินการ',
+                priority: 'low',
+                reporter: 'นายบริหาร จัดการ',
+                phone: '053-885-563',
+                date: '2026-02-03',
+                updatedDate: '2026-02-03'
+            }
+        ];
+
+        let currentFilter = 'all';
+        let currentPage = 1;
+        let itemsPerPage = 10;
+        let filteredRepairs = [...repairs];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            renderTable();
+            updateStats();
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            // Search
+            document.getElementById('searchInput').addEventListener('input', function(e) {
+                const searchTerm = e.target.value.toLowerCase();
+                filterRepairs(searchTerm);
+            });
+
+            // Filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentFilter = this.dataset.filter;
+                    currentPage = 1;
+                    applyFilters();
+                });
+            });
+        }
+
+        function applyFilters() {
+            filteredRepairs = [...repairs];
+
+            // Status filter
+            if (currentFilter === 'pending' || currentFilter === 'progress' || currentFilter === 'completed') {
+                filteredRepairs = filteredRepairs.filter(r => r.status === currentFilter);
+            }
+            
+            // Priority filter
+            if (currentFilter === 'high' || currentFilter === 'medium' || currentFilter === 'low') {
+                filteredRepairs = filteredRepairs.filter(r => r.priority === currentFilter);
+            }
+
+            renderTable();
+        }
+
+        function filterRepairs(searchTerm) {
+            if (!searchTerm) {
+                applyFilters();
+                return;
+            }
+
+            filteredRepairs = repairs.filter(repair => {
+                return (
+                    String(repair.id).includes(searchTerm) ||
+                    repair.categoryName.toLowerCase().includes(searchTerm) ||
+                    repair.location.toLowerCase().includes(searchTerm) ||
+                    repair.description.toLowerCase().includes(searchTerm) ||
+                    repair.reporter.toLowerCase().includes(searchTerm) ||
+                    repair.statusName.toLowerCase().includes(searchTerm)
+                );
+            });
+
+            currentPage = 1;
+            renderTable();
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('repairTableBody');
+            tbody.innerHTML = '';
+
+            if (filteredRepairs.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="9" class="text-center py-5">
+                            <div class="no-data">
+                                <i class="fas fa-inbox"></i>
+                                <p>ไม่พบข้อมูล</p>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                document.getElementById('paginationContainer').style.display = 'none';
+                return;
+            }
+
+            // Pagination
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const pageRepairs = filteredRepairs.slice(startIndex, endIndex);
+
+            pageRepairs.forEach(repair => {
+                const row = createTableRow(repair);
+                tbody.innerHTML += row;
+            });
+
+            renderPagination();
+            document.getElementById('paginationContainer').style.display = 'block';
+        }
+
+        function createTableRow(repair) {
+            const statusClass = `status-${repair.status}`;
+            const priorityClass = `priority-${repair.priority}`;
+            const priorityText = repair.priority === 'high' ? 'สูง' : repair.priority === 'medium' ? 'ปานกลาง' : 'ต่ำ';
+
+            return `
+                <tr>
+                    <td><strong>#${String(repair.id).padStart(4, '0')}</strong></td>
+                    <td>
+                        <i class="fas ${repair.icon} category-icon"></i>
+                        ${repair.categoryName}
+                    </td>
+                    <td>${repair.location}</td>
+                    <td>
+                        <div style="max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                            ${repair.description}
+                        </div>
+                    </td>
+                    <td>${repair.reporter}</td>
+                    <td>
+                        <span class="priority-badge ${priorityClass}">${priorityText}</span>
+                    </td>
+                    <td>
+                        <span class="status-badge ${statusClass}">${repair.statusName}</span>
+                    </td>
+                    <td>${formatDate(repair.date)}</td>
+                    <td style="text-align: center;">
+                        <button class="btn btn-action btn-view" onclick="viewDetail(${repair.id})" title="ดูรายละเอียด">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="btn btn-action btn-edit" onclick="editRepair(${repair.id})" title="แก้ไข">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-action btn-delete" onclick="deleteRepair(${repair.id})" title="ลบ">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+        }
+
+        function renderPagination() {
+            const totalPages = Math.ceil(filteredRepairs.length / itemsPerPage);
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = '';
+
+            if (totalPages <= 1) {
+                return;
+            }
+
+            // Previous button
+            pagination.innerHTML += `
+                <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+                    <a class="page-link" href="#" onclick="changePage(${currentPage - 1}); return false;">
+                        <i class="fas fa-chevron-left"></i>
+                    </a>
+                </li>
+            `;
+
+            // Page numbers
+            for (let i = 1; i <= totalPages; i++) {
+                if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
+                    pagination.innerHTML += `
+                        <li class="page-item ${i === currentPage ? 'active' : ''}">
+                            <a class="page-link" href="#" onclick="changePage(${i}); return false;">${i}</a>
+                        </li>
+                    `;
+                } else if (i === currentPage - 2 || i === currentPage + 2) {
+                    pagination.innerHTML += `
+                        <li class="page-item disabled">
+                            <span class="page-link">...</span>
+                        </li>
+                    `;
+                }
+            }
+
+            // Next button
+            pagination.innerHTML += `
+                <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+                    <a class="page-link" href="#" onclick="changePage(${currentPage + 1}); return false;">
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                </li>
+            `;
+        }
+
+        function changePage(page) {
+            const totalPages = Math.ceil(filteredRepairs.length / itemsPerPage);
+            if (page < 1 || page > totalPages) return;
+            
+            currentPage = page;
+            renderTable();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updateStats() {
+            const total = repairs.length;
+            const pending = repairs.filter(r => r.status === 'pending').length;
+            const progress = repairs.filter(r => r.status === 'progress').length;
+            const completed = repairs.filter(r => r.status === 'completed').length;
+
+            document.getElementById('totalCount').textContent = total;
+            document.getElementById('pendingCount').textContent = pending;
+            document.getElementById('progressCount').textContent = progress;
+            document.getElementById('completedCount').textContent = completed;
+        }
+
+        function viewDetail(id) {
+            const repair = repairs.find(r => r.id === id);
+            if (!repair) return;
+
+            const detailHTML = `
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>รหัสรายการ:</strong> #${String(repair.id).padStart(4, '0')}</p>
+                        <p><strong>หมวดหมู่:</strong> ${repair.categoryName}</p>
+                        <p><strong>สถานที่:</strong> ${repair.location}</p>
+                        <p><strong>ระดับความสำคัญ:</strong> 
+                            <span class="badge bg-${repair.priority === 'high' ? 'danger' : repair.priority === 'medium' ? 'warning' : 'success'}">
+                                ${repair.priority === 'high' ? 'สูง' : repair.priority === 'medium' ? 'ปานกลาง' : 'ต่ำ'}
+                            </span>
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>สถานะ:</strong> <span class="status-badge status-${repair.status}">${repair.statusName}</span></p>
+                        <p><strong>ผู้แจ้ง:</strong> ${repair.reporter}</p>
+                        <p><strong>เบอร์ติดต่อ:</strong> ${repair.phone}</p>
+                        <p><strong>วันที่แจ้ง:</strong> ${formatDateFull(repair.date)}</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="mb-3">
+                    <strong>รายละเอียด:</strong>
+                    <p class="mt-2">${repair.description}</p>
+                </div>
+                <div class="timeline">
+                    <h6><strong>ประวัติการดำเนินการ:</strong></h6>
+                    <div class="timeline-item">
+                        <small class="text-muted">${formatDateFull(repair.date)}</small>
+                        <p class="mb-0">สร้างรายการซ่อม</p>
+                    </div>
+                    ${repair.status !== 'pending' ? `
+                    <div class="timeline-item">
+                        <small class="text-muted">${formatDateFull(repair.updatedDate)}</small>
+                        <p class="mb-0">เปลี่ยนสถานะเป็น ${repair.statusName}</p>
+                    </div>` : ''}
+                </div>
+            `;
+
+            document.getElementById('detailContent').innerHTML = detailHTML;
+            new bootstrap.Modal(document.getElementById('viewDetailModal')).show();
+        }
+
+        function editRepair(id) {
+            const repair = repairs.find(r => r.id === id);
+            if (!repair) return;
+
+            document.getElementById('category').value = repair.category;
+            document.getElementById('priority').value = repair.priority;
+            document.getElementById('location').value = repair.location;
+            document.getElementById('description').value = repair.description;
+            document.getElementById('reporter').value = repair.reporter;
+            document.getElementById('phone').value = repair.phone;
+
+            document.querySelector('#addRepairModal .modal-title').innerHTML = '<i class="fas fa-edit me-2"></i>แก้ไขรายการซ่อม';
+            
+            document.getElementById('repairForm').dataset.editId = id;
+            
+            new bootstrap.Modal(document.getElementById('addRepairModal')).show();
+        }
+
+        function deleteRepair(id) {
+            if (confirm('คุณต้องการลบรายการนี้ใช่หรือไม่?')) {
+                repairs = repairs.filter(r => r.id !== id);
+                applyFilters();
+                updateStats();
+                showNotification('ลบรายการเรียบร้อยแล้ว', 'success');
+            }
+        }
+
+        function saveRepair() {
+            const form = document.getElementById('repairForm');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            const categoryValue = document.getElementById('category').value;
+            const categoryMap = {
+                'electrical': { name: 'ระบบไฟฟ้า', icon: 'fa-bolt' },
+                'plumbing': { name: 'ระบบประปา', icon: 'fa-faucet' },
+                'aircon': { name: 'เครื่องปรับอากาศ', icon: 'fa-wind' },
+                'furniture': { name: 'เฟอร์นิเจอร์', icon: 'fa-chair' },
+                'computer': { name: 'คอมพิวเตอร์/IT', icon: 'fa-laptop' },
+                'building': { name: 'อาคารสถานที่', icon: 'fa-building' },
+                'other': { name: 'อื่นๆ', icon: 'fa-wrench' }
+            };
+
+            const repairData = {
+                category: categoryValue,
+                categoryName: categoryMap[categoryValue].name,
+                icon: categoryMap[categoryValue].icon,
+                priority: document.getElementById('priority').value,
+                location: document.getElementById('location').value,
+                description: document.getElementById('description').value,
+                reporter: document.getElementById('reporter').value,
+                phone: document.getElementById('phone').value,
+                status: 'pending',
+                statusName: 'รอดำเนินการ',
+                date: new Date().toISOString().split('T')[0],
+                updatedDate: new Date().toISOString().split('T')[0]
+            };
+
+            const editId = form.dataset.editId;
+            if (editId) {
+                const index = repairs.findIndex(r => r.id === parseInt(editId));
+                repairs[index] = { ...repairs[index], ...repairData };
+                delete form.dataset.editId;
+                showNotification('แก้ไขรายการเรียบร้อยแล้ว', 'success');
+            } else {
+                repairData.id = Math.max(...repairs.map(r => r.id)) + 1;
+                repairs.push(repairData);
+                showNotification('เพิ่มรายการเรียบร้อยแล้ว', 'success');
+            }
+
+            applyFilters();
+            updateStats();
+            bootstrap.Modal.getInstance(document.getElementById('addRepairModal')).hide();
+            form.reset();
+        }
+
+        function exportToExcel() {
+            showNotification('กำลังส่งออกข้อมูล...', 'info');
+            // This would normally call a server-side function to generate Excel
+            setTimeout(() => {
+                showNotification('ส่งออกข้อมูลเรียบร้อยแล้ว', 'success');
+            }, 1000);
+        }
+
+        function printTable() {
+            window.print();
+        }
+
+        function logout() {
+            if (confirm('คุณต้องการออกจากระบบหรือไม่?')) {
+                showNotification('ออกจากระบบเรียบร้อยแล้ว', 'info');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1000);
+            }
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('th-TH', { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        function formatDateFull(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('th-TH', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function showNotification(message, type) {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type} alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x mt-3`;
+            alertDiv.style.zIndex = '9999';
+            alertDiv.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            document.body.appendChild(alertDiv);
+            
+            setTimeout(() => {
+                alertDiv.remove();
+            }, 3000);
+        }
+
+        // Reset modal when closed
+        document.getElementById('addRepairModal').addEventListener('hidden.bs.modal', function() {
+            document.getElementById('repairForm').reset();
+            delete document.getElementById('repairForm').dataset.editId;
+            document.querySelector('#addRepairModal .modal-title').innerHTML = '<i class="fas fa-file-alt me-2"></i>เพิ่มรายการซ่อม';
+        });
+
+        // Print styles
+        window.addEventListener('beforeprint', function() {
+            document.querySelectorAll('.btn-action, .add-repair-btn, .navbar, .footer-section').forEach(el => {
+                el.style.display = 'none';
+            });
+        });
+
+        window.addEventListener('afterprint', function() {
+            document.querySelectorAll('.btn-action, .add-repair-btn, .navbar, .footer-section').forEach(el => {
+                el.style.display = '';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>วิธีใช้งาน - ระบบแจ้งซ่อมออนไลน์ CMRU</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            font-family: 'Sarabun', sans-serif;
+        }
+
+        :root {
+            --primary-color: #8B4789;
+            --secondary-color: #D4AF37;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+            --info-color: #17a2b8;
+            --light-bg: #f8f9fa;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding-top: 76px;
+            padding-bottom: 0;
+        }
+
+        /* Navigation Bar Styles */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #6a3568 100%);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.2);
+            padding: 12px 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: white !important;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            transform: scale(1.05);
+        }
+
+        .navbar-brand i {
+            color: var(--secondary-color);
+            margin-right: 10px;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+            padding: 8px 16px !important;
+            margin: 0 5px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white !important;
+        }
+
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.15);
+            color: white !important;
+        }
+
+        .user-dropdown .dropdown-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            padding: 8px 20px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .user-dropdown .dropdown-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .user-dropdown .dropdown-menu {
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            border: none;
+            margin-top: 10px;
+        }
+
+        .user-dropdown .dropdown-item {
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+
+        .user-dropdown .dropdown-item:hover {
+            background: var(--light-bg);
+            padding-left: 25px;
+        }
+
+        .user-dropdown .dropdown-item i {
+            width: 20px;
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+
+        .header-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #6a3568 100%);
+            color: white;
+            padding: 30px 0;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .header-section h1 {
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header-section p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        /* Quick Start Section */
+        .quick-start-section {
+            margin-bottom: 40px;
+        }
+
+        .quick-start-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            animation: fadeInUp 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .quick-start-card:nth-child(1) { animation-delay: 0.1s; }
+        .quick-start-card:nth-child(2) { animation-delay: 0.2s; }
+        .quick-start-card:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .quick-start-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .quick-start-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        /* Step Cards */
+        .step-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--primary-color);
+            opacity: 0;
+            animation: slideInRight 0.5s ease-out forwards;
+        }
+
+        .step-card:nth-child(1) { animation-delay: 0.2s; }
+        .step-card:nth-child(2) { animation-delay: 0.3s; }
+        .step-card:nth-child(3) { animation-delay: 0.4s; }
+        .step-card:nth-child(4) { animation-delay: 0.5s; }
+        .step-card:nth-child(5) { animation-delay: 0.6s; }
+        .step-card:nth-child(6) { animation-delay: 0.7s; }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #6a3568 100%);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .step-content h5 {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .step-content p {
+            color: #6c757d;
+            margin-bottom: 10px;
+        }
+
+        .step-image {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-top: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-bottom: 40px;
+        }
+
+        .faq-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .faq-card:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+        }
+
+        .faq-question {
+            display: flex;
+            align-items: start;
+            cursor: pointer;
+            padding: 10px 0;
+        }
+
+        .faq-question-icon {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .faq-question h6 {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .faq-answer {
+            padding-left: 45px;
+            color: #6c757d;
+            margin-top: 10px;
+        }
+
+        /* Tips Section */
+        .tips-card {
+            background: linear-gradient(135deg, #fff9e6 0%, #fff4cc 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-left: 5px solid var(--warning-color);
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .tips-card h5 {
+            color: #856404;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .tips-card ul {
+            color: #856404;
+            margin-bottom: 0;
+        }
+
+        .tips-card li {
+            margin-bottom: 8px;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: linear-gradient(135deg, #e7f3ff 0%, #d4e9ff 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--info-color);
+        }
+
+        .info-box i {
+            color: var(--info-color);
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+
+        .info-box p {
+            color: #004085;
+            margin: 0;
+        }
+
+        /* Category Icons */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .category-item {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .category-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .category-item i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .category-item p {
+            margin: 0;
+            font-weight: 600;
+            color: #495057;
+        }
+
+        /* Video Section */
+        .video-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .video-placeholder {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .video-placeholder i {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+
+        /* Contact Support */
+        .support-card {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #6a3568 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .support-card h4 {
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .support-card .btn-outline-light {
+            border: 2px solid white;
+            font-weight: 600;
+            padding: 10px 30px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .support-card .btn-outline-light:hover {
+            background: white;
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Footer Styles */
+        .main-content {
+            margin-bottom: 50px;
+        }
+
+        .footer-section {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+        }
+
+        .footer-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-title:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-links i {
+            margin-right: 8px;
+            color: var(--secondary-color);
+        }
+
+        .contact-info {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+        }
+
+        .contact-info i {
+            color: var(--secondary-color);
+            margin-right: 10px;
+            width: 20px;
+        }
+
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 30px;
+            padding-top: 20px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-logo {
+            max-height: 60px;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .footer-section {
+                text-align: center;
+            }
+
+            .footer-title:after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .step-card {
+                padding: 20px;
+            }
+
+            .step-number {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .category-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index home.html">
+                <i class="fas fa-tools"></i>
+                ระบบแจ้งซ่อม CMRU
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.3);">
+                <span class="navbar-toggler-icon" style="filter: brightness(0) invert(1);"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index home.html"><i class="fas fa-home me-1"></i>หน้าแรก</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="All repair items.html"><i class="fas fa-list me-1"></i>รายการซ่อม</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="How to use.html"><i class="fas fa-question-circle me-1"></i>วิธีใช้งาน</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Contact us.html"><i class="fas fa-phone me-1"></i>ติดต่อเรา</a>
+                    </li>
+                    
+                    <!-- User Dropdown -->
+                    <li class="nav-item dropdown user-dropdown" id="userDropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user-circle me-2"></i>
+                            <span id="displayUserName">ผู้ใช้งาน</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-user"></i>โปรไฟล์</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-history"></i>ประวัติการแจ้งซ่อม</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog"></i>ตั้งค่า</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i>ออกจากระบบ</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="header-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-9">
+                    <h1><i class="fas fa-book-open me-3"></i>วิธีใช้งานระบบ</h1>
+                    <p class="mb-0">คู่มือการใช้งานระบบแจ้งซ่อมออนไลน์ อย่างละเอียดทีละขั้นตอน</p>
+                </div>
+                <div class="col-md-3 text-end">
+                    <img src="https://www.cmru.ac.th/wp-content/uploads/2021/08/logo-cmru-white.png" alt="CMRU Logo" style="height: 80px;" onerror="this.style.display='none'">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container main-content">
+        <!-- Quick Start Guide -->
+        <div class="quick-start-section">
+            <h2 class="text-center mb-4" style="color: var(--primary-color); font-weight: 700;">เริ่มต้นใช้งานง่ายๆ 3 ขั้นตอน</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="quick-start-card text-center">
+                        <div class="quick-start-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <h5 class="quick-start-title">1. ลงทะเบียน/เข้าสู่ระบบ</h5>
+                        <p class="text-muted">สร้างบัญชีผู้ใช้งานหรือเข้าสู่ระบบด้วยบัญชีที่มีอยู่แล้ว</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="quick-start-card text-center">
+                        <div class="quick-start-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h5 class="quick-start-title">2. แจ้งซ่อม</h5>
+                        <p class="text-muted">กรอกรายละเอียดปัญหาและสถานที่ที่ต้องการซ่อม</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="quick-start-card text-center">
+                        <div class="quick-start-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h5 class="quick-start-title">3. ติดตามสถานะ</h5>
+                        <p class="text-muted">ตรวจสอบความคืบหน้าการซ่อมแซมได้ตลอดเวลา</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Box -->
+        <div class="info-box">
+            <div class="d-flex align-items-start">
+                <i class="fas fa-lightbulb"></i>
+                <div>
+                    <strong>ข้อมูลสำคัญ:</strong>
+                    <p>ระบบแจ้งซ่อมออนไลน์ช่วยให้คุณสามารถแจ้งปัญหาการซ่อมแซมได้อย่างรวดเร็วและติดตามสถานะได้แบบเรียลไทม์ โดยไม่ต้องมาติดต่อด้วยตนเอง</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Steps -->
+        <h3 class="mb-4" style="color: var(--primary-color); font-weight: 700;">
+            <i class="fas fa-list-ol me-2"></i>คู่มือการใช้งานโดยละเอียด
+        </h3>
+
+        <!-- Step 1: Register -->
+        <div class="step-card">
+            <div class="d-flex align-items-start">
+                <div class="step-number">1</div>
+                <div class="step-content flex-grow-1">
+                    <h5><i class="fas fa-user-plus me-2"></i>การลงทะเบียนเข้าใช้งาน</h5>
+                    <p>หากคุณเป็นผู้ใช้งานใหม่ ให้ทำตามขั้นตอนดังนี้:</p>
+                    <ol>
+                        <li>คลิกปุ่ม "ลงทะเบียน" ที่มุมขวาบนของหน้าเว็บ</li>
+                        <li>กรอกข้อมูลส่วนตัว: ชื่อ, นามสกุล, อีเมล, เบอร์โทรศัพท์</li>
+                        <li>เลือกตำแหน่ง/หน่วยงาน (นักศึกษา, อาจารย์, เจ้าหน้าที่)</li>
+                        <li>ตั้งรหัสผ่าน (อย่างน้อย 8 ตัวอักษร)</li>
+                        <li>ยืนยันรหัสผ่านอีกครั้ง</li>
+                        <li>ติ๊กยอมรับข้อกำหนดและเงื่อนไข</li>
+                        <li>คลิก "ลงทะเบียน" เพื่อสร้างบัญชี</li>
+                    </ol>
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        <strong>หมายเหตุ:</strong> ควรใช้อีเมลมหาวิทยาลัย (@cmru.ac.th) เพื่อความสะดวกในการติดต่อ
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: Login -->
+        <div class="step-card">
+            <div class="d-flex align-items-start">
+                <div class="step-number">2</div>
+                <div class="step-content flex-grow-1">
+                    <h5><i class="fas fa-sign-in-alt me-2"></i>การเข้าสู่ระบบ</h5>
+                    <p>สำหรับผู้ใช้งานที่มีบัญชีแล้ว:</p>
+                    <ol>
+                        <li>คลิกปุ่ม "เข้าสู่ระบบ" ที่มุมขวาบน</li>
+                        <li>กรอกอีเมลและรหัสผ่าน</li>
+                        <li>สามารถเลือก "จดจำฉันไว้" เพื่อไม่ต้องเข้าสู่ระบบในครั้งถัดไป</li>
+                        <li>คลิก "เข้าสู่ระบบ"</li>
+                    </ol>
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        <strong>ลืมรหัสผ่าน?</strong> คลิกลิงก์ "ลืมรหัสผ่าน" ในหน้าเข้าสู่ระบบเพื่อรีเซ็ตรหัสผ่าน
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3: Add Repair Request -->
+        <div class="step-card">
+            <div class="d-flex align-items-start">
+                <div class="step-number">3</div>
+                <div class="step-content flex-grow-1">
+                    <h5><i class="fas fa-plus-circle me-2"></i>การแจ้งซ่อม</h5>
+                    <p>วิธีการแจ้งรายการซ่อม:</p>
+                    <ol>
+                        <li>คลิกปุ่ม <span class="badge bg-primary">+ เพิ่มรายการซ่อม</span> (ปุ่มกลมมุมขวาล่าง)</li>
+                        <li>เลือก <strong>หมวดหมู่การซ่อม</strong> จากรายการ:
+                            <div class="category-grid mt-3">
+                                <div class="category-item">
+                                    <i class="fas fa-bolt"></i>
+                                    <p>ระบบไฟฟ้า</p>
+                                </div>
+                                <div class="category-item">
+                                    <i class="fas fa-faucet"></i>
+                                    <p>ระบบประปา</p>
+                                </div>
+                                <div class="category-item">
+                                    <i class="fas fa-wind"></i>
+                                    <p>เครื่องปรับอากาศ</p>
+                                </div>
+                                <div class="category-item">
+                                    <i class="fas fa-chair"></i>
+                                    <p>เฟอร์นิเจอร์</p>
+                                </div>
+                                <div class="category-item">
+                                    <i class="fas fa-laptop"></i>
+                                    <p>คอมพิวเตอร์/IT</p>
+                                </div>
+                                <div class="category-item">
+                                    <i class="fas fa-building"></i>
+                                    <p>อาคารสถานที่</p>
+                                </div>
+                                <div class="category-item">
+                                    <i class="fas fa-wrench"></i>
+                                    <p>อื่นๆ</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>เลือก <strong>ระดับความสำคัญ</strong>:
+                            <ul>
+                                <li><span class="badge bg-danger">สูง</span> - ปัญหาเร่งด่วน ส่งผลกระทบต่อการใช้งานอย่างมาก</li>
+                                <li><span class="badge bg-warning text-dark">ปานกลาง</span> - ปัญหาที่ควรได้รับการแก้ไขในเร็ววัน</li>
+                                <li><span class="badge bg-success">ต่ำ</span> - ปัญหาเล็กน้อย ไม่รีบร้อนมาก</li>
+                            </ul>
+                        </li>
+                        <li>ระบุ <strong>สถานที่</strong> ที่ต้องการซ่อมให้ชัดเจน (เช่น อาคาร 1 ห้อง 101)</li>
+                        <li>อธิบาย <strong>รายละเอียดปัญหา</strong> ให้ครบถ้วน</li>
+                        <li>กรอก <strong>ชื่อผู้แจ้ง</strong> และ <strong>เบอร์ติดต่อ</strong></li>
+                        <li>ตรวจสอบข้อมูลให้ถูกต้อง แล้วคลิก "บันทึก"</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 4: Track Status -->
+        <div class="step-card">
+            <div class="d-flex align-items-start">
+                <div class="step-number">4</div>
+                <div class="step-content flex-grow-1">
+                    <h5><i class="fas fa-search me-2"></i>การติดตามสถานะ</h5>
+                    <p>คุณสามารถติดตามสถานะการซ่อมได้ดังนี้:</p>
+                    <ol>
+                        <li>ไปที่เมนู "รายการซ่อม" หรือดูที่หน้าแรก</li>
+                        <li>ใช้ช่องค้นหาเพื่อค้นหารายการของคุณ</li>
+                        <li>คลิกปุ่ม <span class="badge" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <i class="fas fa-eye"></i> ดูรายละเอียด
+                        </span></li>
+                        <li>ดูสถานะปัจจุบัน:
+                            <ul class="mt-2">
+                                <li><span class="badge bg-warning text-dark">รอดำเนินการ</span> - รายการถูกบันทึกแล้ว รอเจ้าหน้าที่ตรวจสอบ</li>
+                                <li><span class="badge bg-info">กำลังดำเนินการ</span> - เจ้าหน้าที่กำลังดำเนินการซ่อมแซม</li>
+                                <li><span class="badge bg-success">เสร็จสิ้น</span> - ซ่อมเสร็จเรียบร้อยแล้ว</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 5: Filter and Search -->
+        <div class="step-card">
+            <div class="d-flex align-items-start">
+                <div class="step-number">5</div>
+                <div class="step-content flex-grow-1">
+                    <h5><i class="fas fa-filter me-2"></i>การค้นหาและกรองข้อมูล</h5>
+                    <p>ฟีเจอร์ที่ช่วยให้คุณค้นหารายการได้ง่ายขึ้น:</p>
+                    <ul>
+                        <li><strong>ช่องค้นหา:</strong> พิมพ์คำค้นหา (สถานที่, รายละเอียด, ชื่อผู้แจ้ง)</li>
+                        <li><strong>กรองตามสถานะ:</strong>
+                            <div class="mt-2">
+                                <button class="btn btn-sm btn-outline-secondary me-2">ทั้งหมด</button>
+                                <button class="btn btn-sm btn-outline-warning me-2">รอดำเนินการ</button>
+                                <button class="btn btn-sm btn-outline-info me-2">กำลังดำเนินการ</button>
+                                <button class="btn btn-sm btn-outline-success">เสร็จสิ้น</button>
+                            </div>
+                        </li>
+                        <li><strong>ดูสถิติ:</strong> ตรวจสอบจำนวนรายการในแต่ละสถานะที่บัตรสถิติด้านบน</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 6: Edit and Delete -->
+        <div class="step-card">
+            <div class="d-flex align-items-start">
+                <div class="step-number">6</div>
+                <div class="step-content flex-grow-1">
+                    <h5><i class="fas fa-edit me-2"></i>การแก้ไขและลบรายการ</h5>
+                    <p>หากต้องการแก้ไขหรือลบรายการ:</p>
+                    <ul>
+                        <li><strong>แก้ไข:</strong> คลิกปุ่ม <span class="badge" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                            <i class="fas fa-edit"></i> แก้ไข
+                        </span> → แก้ไขข้อมูล → คลิก "บันทึก"</li>
+                        <li><strong>ลบ:</strong> คลิกปุ่ม <span class="badge" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                            <i class="fas fa-trash"></i> ลบ
+                        </span> → ยืนยันการลบ</li>
+                    </ul>
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-circle me-2"></i>
+                        <strong>คำเตือน:</strong> การลบข้อมูลไม่สามารถย้อนกลับได้ กรุณาตรวจสอบให้แน่ใจก่อนลบ
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tips Card -->
+        <div class="tips-card">
+            <h5><i class="fas fa-lightbulb me-2"></i>เคล็ดลับการใช้งาน</h5>
+            <ul>
+                <li>ควรระบุสถานที่ให้ชัดเจนที่สุด เพื่อให้เจ้าหน้าที่หาพื้นที่ซ่อมได้ง่าย</li>
+                <li>อธิบายปัญหาให้ละเอียด จะช่วยให้การซ่อมแซมรวดเร็วและตรงจุดมากขึ้น</li>
+                <li>เลือกระดับความสำคัญให้เหมาะสม เพื่อให้เจ้าหน้าที่จัดลำดับความสำคัญได้ถูกต้อง</li>
+                <li>ตรวจสอบสถานะการซ่อมเป็นประจำ เพื่อติดตามความคืบหน้า</li>
+                <li>หากมีปัญหาเร่งด่วนมาก สามารถโทรติดต่อเจ้าหน้าที่โดยตรงที่ 053-885-555</li>
+            </ul>
+        </div>
+
+        <!-- Video Tutorial (Optional) -->
+        <div class="video-card">
+            <h4 style="color: var(--primary-color); font-weight: 700; margin-bottom: 20px;">
+                <i class="fas fa-video me-2"></i>วิดีโอสอนการใช้งาน
+            </h4>
+            <div class="video-placeholder">
+                <i class="fas fa-play-circle"></i>
+                <h5>คลิกเพื่อดูวิดีโอสอนการใช้งาน</h5>
+                <p>ความยาว: 5 นาที</p>
+            </div>
+            <p class="text-muted mb-0">วิดีโอแนะนำการใช้งานระบบตั้งแต่การลงทะเบียนจนถึงการติดตามสถานะ</p>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h3 class="mb-4" style="color: var(--primary-color); font-weight: 700;">
+                <i class="fas fa-question-circle me-2"></i>คำถามที่พบบ่อย (FAQ)
+            </h3>
+
+            <div class="faq-card">
+                <div class="faq-question">
+                    <i class="fas fa-question-circle faq-question-icon"></i>
+                    <h6>ต้องลงทะเบียนก่อนใช้งานหรือไม่?</h6>
+                </div>
+                <div class="faq-answer">
+                    ใช่ ต้องลงทะเบียนและเข้าสู่ระบบก่อนถึงจะสามารถแจ้งซ่อมได้ เพื่อความสะดวกในการติดตามสถานะและติดต่อกลับ
+                </div>
+            </div>
+
+            <div class="faq-card">
+                <div class="faq-question">
+                    <i class="fas fa-question-circle faq-question-icon"></i>
+                    <h6>ใช้เวลานานเท่าไหร่ในการซ่อม?</h6>
+                </div>
+                <div class="faq-answer">
+                    ระยะเวลาขึ้นอยู่กับประเภทและความซับซ้อนของปัญหา โดยทั่วไป:
+                    <ul class="mt-2 mb-0">
+                        <li>ปัญหาเร่งด่วน (ระดับสูง): 1-2 วัน</li>
+                        <li>ปัญหาปานกลาง: 3-5 วัน</li>
+                        <li>ปัญหาทั่วไป (ระดับต่ำ): 5-7 วัน</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-card">
+                <div class="faq-question">
+                    <i class="fas fa-question-circle faq-question-icon"></i>
+                    <h6>สามารถแจ้งซ่อมหลายรายการพร้อมกันได้หรือไม่?</h6>
+                </div>
+                <div class="faq-answer">
+                    ได้ คุณสามารถแจ้งซ่อมได้หลายรายการ โดยแต่ละรายการจะมีรหัสแยกกันเพื่อง่ายต่อการติดตาม
+                </div>
+            </div>
+
+            <div class="faq-card">
+                <div class="faq-question">
+                    <i class="fas fa-question-circle faq-question-icon"></i>
+                    <h6>ลืมรหัสผ่านทำอย่างไร?</h6>
+                </div>
+                <div class="faq-answer">
+                    คลิกลิงก์ "ลืมรหัสผ่าน?" ในหน้าเข้าสู่ระบบ จากนั้นระบบจะส่งลิงก์รีเซ็ตรหัสผ่านไปยังอีเมลที่ลงทะเบียนไว้
+                </div>
+            </div>
+
+            <div class="faq-card">
+                <div class="faq-question">
+                    <i class="fas fa-question-circle faq-question-icon"></i>
+                    <h6>จะได้รับการแจ้งเตือนเมื่อสถานะเปลี่ยนหรือไม่?</h6>
+                </div>
+                <div class="faq-answer">
+                    ได้ ระบบจะส่งอีเมลแจ้งเตือนเมื่อมีการเปลี่ยนแปลงสถานะ (รอดำเนินการ → กำลังดำเนินการ → เสร็จสิ้น)
+                </div>
+            </div>
+
+            <div class="faq-card">
+                <div class="faq-question">
+                    <i class="fas fa-question-circle faq-question-icon"></i>
+                    <h6>สามารถยกเลิกรายการหลังจากแจ้งแล้วได้หรือไม่?</h6>
+                </div>
+                <div class="faq-answer">
+                    ได้ สามารถลบรายการได้ก่อนที่เจ้าหน้าที่จะเริ่มดำเนินการซ่อม หากเริ่มซ่อมแล้วควรติดต่อเจ้าหน้าที่โดยตรง
+                </div>
+            </div>
+        </div>
+
+        <!-- Support Card -->
+        <div class="support-card">
+            <h4><i class="fas fa-headset me-2"></i>ต้องการความช่วยเหลือเพิ่มเติม?</h4>
+            <p class="mb-4">ทีมงานของเรายินดีให้บริการและช่วยเหลือคุณตลอด 24 ชั่วโมง</p>
+            <div class="row justify-content-center">
+                <div class="col-md-3 mb-2">
+                    <a href="tel:053885555" class="btn btn-outline-light w-100">
+                        <i class="fas fa-phone me-2"></i>โทร 053-885-555
+                    </a>
+                </div>
+                <div class="col-md-3 mb-2">
+                    <a href="mailto:repair@cmru.ac.th" class="btn btn-outline-light w-100">
+                        <i class="fas fa-envelope me-2"></i>อีเมล
+                    </a>
+                </div>
+                <div class="col-md-3 mb-2">
+                    <a href="#" class="btn btn-outline-light w-100">
+                        <i class="fab fa-facebook me-2"></i>Facebook
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <img src="https://www.cmru.ac.th/wp-content/uploads/2021/08/logo-cmru-white.png" alt="CMRU Logo" class="footer-logo" onerror="this.style.display='none'">
+                    <h5 class="footer-title">เกี่ยวกับเรา</h5>
+                    <p class="text-white-50">
+                        ระบบแจ้งซ่อมออนไลน์ มหาวิทยาลัยราชภัฏเชียงใหม่ 
+                        เพื่อความสะดวกในการแจ้งซ่อมและติดตามสถานะการซ่อมแซม
+                    </p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/cmrufans" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="www.youtube.com/@SDD_CMRU" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h5 class="footer-title">ลิงก์ด่วน</h5>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-angle-right"></i>หน้าแรก</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i>วิธีการใช้งาน</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i>คำถามที่พบบ่อย</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i>ติดต่อเจ้าหน้าที่</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i>นโยบายความเป็นส่วนตัว</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-12 mb-4">
+                    <h5 class="footer-title">ติดต่อเรา</h5>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i>
+                            202 ถ.ช้างเผือก ต.ช้างเผือก<br>
+                            <span style="margin-left: 30px;">อ.เมือง จ.เชียงใหม่ 50300</span>
+                        </p>
+                        <p><i class="fas fa-phone"></i>053-885-555</p>
+                        <p><i class="fas fa-envelope"></i>repair@cmru.ac.th</p>
+                        <p><i class="fas fa-clock"></i>จันทร์ - ศุกร์: 08:30 - 16:30 น.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="mb-0">
+                    &copy; 2026 มหาวิทยาลัยราชภัฏเชียงใหม่ | Chiang Mai Rajabhat University. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        function logout() {
+            if (confirm('คุณต้องการออกจากระบบหรือไม่?')) {
+                localStorage.removeItem('currentUser');
+                showNotification('ออกจากระบบเรียบร้อยแล้ว', 'info');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1000);
+            }
+        }
+
+        function showNotification(message, type) {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type} alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x mt-3`;
+            alertDiv.style.zIndex = '9999';
+            alertDiv.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            document.body.appendChild(alertDiv);
+            
+            setTimeout(() => {
+                alertDiv.remove();
+            }, 3000);
+        }
+
+        // Check login status
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedUser = localStorage.getItem('currentUser');
+            if (savedUser) {
+                const currentUser = JSON.parse(savedUser);
+                document.getElementById('displayUserName').textContent = currentUser.firstName + ' ' + currentUser.lastName;
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
